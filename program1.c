@@ -11,7 +11,7 @@ struct employee
 void write()
 {
     FILE *fp;
-    struct employee emp;
+    struct employee emp[3];
     fp=fopen("task1.txt","w");
     if(fp==NULL)
     {
@@ -22,17 +22,18 @@ void write()
     for(int i=0;i<3;i++)
     {
         printf("enter name:\n");
-        scanf("%s",emp.name);
+        scanf("%s",&emp[i].name);
         printf("enter id:\n");
-        scanf("%d",&emp.id);
+        scanf("%d",&emp[i].id);
         printf("enter age:\n");
-        scanf("%d",&emp.age);
+        scanf("%d",&emp[i].age);
+        fprintf(fp,"%s\n%d\n%d\n",emp[i].name,&emp[i].id,&emp[i].age);
     }
       fclose(fp);
 }
 void read()
 {
-    struct employee emp;
+    struct employee emp[3];
    FILE *fp1;
    fp1= fopen ("task1.txt", "r");
    if (fp1 == NULL)
@@ -43,10 +44,10 @@ void read()
    printf("employee details are:\n");
      for(int i=0;i<3;i++)
      {
-         fscanf(fp1,"%s\n%d\n%d\n",1,emp.name,emp.id,emp.age);
-         printf("name=%s\n",emp.name);
-         printf("id=%d\n",emp.id);
-         printf("age=%d\n",emp.age);
+         printf("name=%s\n",emp[i].name);
+         printf("id=%d\n",emp[i].id);
+         printf("age=%d\n",emp[i].age);
+         fscanf(fp1,"%s\n%d\n%d\n",&emp[i].name,&emp[i].id,&emp[i].age);
      }
    fclose (fp1);
 }
